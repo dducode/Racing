@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Label created in UI Builder" display-tooltip-when-elided="true" />
+    <ui:Foldout text="Default Inspector" name="Default_inspector" />
+</ui:UXML>

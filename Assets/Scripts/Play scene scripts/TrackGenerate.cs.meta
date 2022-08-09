@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7aee2365d66f74040af629880c6a3b2d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - directRoad: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+  - turnRoad: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
+  - mirrorTurnRoad: {fileID: 9108555624026156615, guid: 81efb908a1827d843abcafd699930719, type: 3}
+  - start: {instanceID: 0}
+  - finish: {fileID: 8499614720051398551, guid: 1886a478fdd09014fb3cb4b05b8211db, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

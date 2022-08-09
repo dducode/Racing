@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc3cab044614fc40879e056bdc5a2fb, type: 3}
+  m_Name: Sport_Car
+  m_EditorClassIdentifier: 
+  _carName: Sport
+  _maxMotorTorque: 700
+  _maxBrakingTorque: 1400
+  _mass: 1073
+  _transmission: 0
+  _car: {fileID: 1094918606176732, guid: 5bb1f14131476c74a95504263bf0558f, type: 3}

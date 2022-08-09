@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc3cab044614fc40879e056bdc5a2fb, type: 3}
+  m_Name: Mustang
+  m_EditorClassIdentifier: 
+  _carName: Mustang
+  _maxMotorTorque: 550
+  _maxBrakingTorque: 1100
+  _mass: 1284
+  _transmission: 2
+  _car: {fileID: 6238697556061181411, guid: ccfae9991e7591241a45533953f96f8c, type: 3}
