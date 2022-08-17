@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(CarController))]
 public class CarMovement : MonoBehaviour
 {
-    public Vector3 massCenter; 
-    public List<AxleInfo> axleInfos; // the information about each individual axle
-    public CarFeature carFeature;  
-    public Automatic automatic;  
-    public Camera thirdPersonCamera;
-    public Lights lights;
-    Rigidbody rb;    
-    Vector3 startPos;
-    Quaternion startQuat;
-    bool lightsTumbler;
+    [SerializeField] List<AxleInfo> axleInfos; // the information about each individual axle
+    [SerializeField] CarFeature carFeature;  
+    [SerializeField] Automatic automatic;
+    Rigidbody rb;
     public float speed { get { return rb.velocity.magnitude * 3.6f; } }
     public int engineSpeed { get; private set; }
     public int currentTransmission { get; private set; }
@@ -27,44 +21,9 @@ public class CarMovement : MonoBehaviour
 
     void Awake()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        if (scene.buildIndex == 1)
-        {
-            gameObject.GetComponent<CarMovement>().enabled = false;
-            thirdPersonCamera.enabled = false;
-            return;
-        }
-
-        if (GameManager.gameManager != null)
-            gameSettings = GameManager.gameManager.gameSettings;
-        else
-        {
-            GameSettings _gameSettings = new GameSettings();
-            _gameSettings.braking = KeyCode.Space;
-            _gameSettings.lightsTumbler = KeyCode.LeftShift;
-            gameSettings = _gameSettings;
-        }
+        gameSettings = GameManager.gameManager.gameSettings;
         rb = GetComponent<Rigidbody>();
         currentTransmission = 1;
-    }
-
-    void Start()
-    {
-        startPos = transform.position;
-        startQuat = transform.rotation;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "finish")
-        {
-            transform.position = startPos;
-            transform.rotation = startQuat;
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            currentTransmission = 1;
-            BroadcastMessages.SendMessage(Messages.RELOAD_TRACK);
-        }
     }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
@@ -84,25 +43,9 @@ public class CarMovement : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(gameSettings.lightsTumbler))
-            lightsTumbler = !lightsTumbler;
-
-        ApplyCamerasAndLightsEnabled();
-        
         BroadcastMessages<float, int, float>.SendMessage(
             Messages.UPDATE_VIEW, speed, currentTransmission, currentEngineSpeed
             );
-    }
-
-    void ApplyCamerasAndLightsEnabled()
-    {
-        Vector3 move = transform.InverseTransformDirection(rb.velocity);
-        bool forward = !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.UpArrow);
-        bool back = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-        lights.backLight.SetActive(forward || Input.GetKey(gameSettings.braking));
-        lights.rearSideLight.SetActive(back || Input.GetKey(gameSettings.braking));
-        lights.reverseLight.SetActive(move.z < 0 && back);
-        lights.frontLight.SetActive(lightsTumbler);
     }
 
     float MotorTorque()
@@ -171,20 +114,14 @@ public class CarMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        rb.centerOfMass = massCenter;
-        Vector3 moveForward = transform.InverseTransformDirection(rb.velocity);
-        float scalar = Mathf.Abs(moveForward.z) / 100;
-        rb.AddForce(Vector3.down * scalar, ForceMode.Acceleration);
-        rb.angularDrag = scalar;
-
         float rotationForce = MotorTorque();
         float motor = carFeature.maxMotorTorque * Input.GetAxis("Vertical") * rotationForce;
         float steering = carFeature.maxSteeringAngle * Input.GetAxis("Horizontal");
-        bool brake = Input.GetKey(gameSettings.braking);        
+        bool brake = Input.GetKey(gameSettings.braking);    
 
         float dot = Vector3.Dot(transform.forward, rb.velocity);
         dot = Mathf.Clamp(dot, 0, Mathf.Infinity);
-        steering /= Mathf.Sqrt(dot / 5 + 1);
+        steering /= Mathf.Sqrt(dot / 5 + 1);    
 
         GearChange();
 

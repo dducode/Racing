@@ -36,22 +36,18 @@ public class SelectPanel : MonoBehaviour
 
     public void Forward()
     {
-        if (!back.interactable)
-            back.interactable = true;
+        back.interactable = true;
         _index++;
         _index = Mathf.Clamp(_index, 0, carData.Count);
-        if (_index == carData.Count - 1)
-            forward.interactable = false;
+        forward.interactable = _index < carData.Count - 1;
         UpdateData();
     }
     public void Back()
     {
-        if (!forward.interactable)
-            forward.interactable = true;
+        forward.interactable = true;
         _index--;
         _index = Mathf.Clamp(_index, 0, carData.Count);
-        if (_index == 0)
-            back.interactable = false;
+        back.interactable = _index > 0;
         UpdateData();
     }
 
@@ -59,7 +55,7 @@ public class SelectPanel : MonoBehaviour
     {
         gameData = GameManager.gameManager.gameData;
         gameData.carData = carData[_index];
-        GameManager.gameManager.SetGameData(gameData);
+        GameManager.gameManager.SetData(gameData);
         gameObject.SetActive(false);
     }
 

@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System;
 
-public class SettingsPanel : MonoBehaviour
+public class SettingsPanel : MonoBehaviour, IUserInterface
 {
     [SerializeField] TMP_Dropdown qualitySelect;
     [SerializeField] TextMeshProUGUI lightsTumblerButton;
     [SerializeField] TextMeshProUGUI brakingButton;
+    [SerializeField] Slider soundVolume;
+    [SerializeField] Slider musicVolume;
+    [SerializeField] Button resetSettings;
     GameSettings gameSettings;
     Event e;
 
-    void Awake()
+    public void StartUI()
     {
         gameSettings = GameManager.gameManager.gameSettings;
-        qualitySelect.value = gameSettings.quality;
+        qualitySelect.value = (int)gameSettings.quality;
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
+        soundVolume.value = gameSettings.soundVolume;
+        musicVolume.value = gameSettings.musicVolume;
     }
 
     void OnGUI() => e = Event.current;
@@ -26,20 +32,40 @@ public class SettingsPanel : MonoBehaviour
     public void SetQuality(int count)
     {
         gameSettings = GameManager.gameManager.gameSettings;
-        gameSettings.quality = count;
-        qualitySelect.value = gameSettings.quality;
+        gameSettings.quality = (Quality)count;
+        qualitySelect.value = (int)gameSettings.quality;
         qualitySelect.RefreshShownValue();
-        GameManager.gameManager.SetGameSettings(gameSettings);
+        GameManager.gameManager.SetSettings(gameSettings);
+        resetSettings.interactable = true;
+    }
+
+    public void SetSoundVolume(float value)
+    {
+        gameSettings = GameManager.gameManager.gameSettings;
+        gameSettings.soundVolume = value;
+        GameManager.gameManager.SetSettings(gameSettings);
+        resetSettings.interactable = true;
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        gameSettings = GameManager.gameManager.gameSettings;
+        gameSettings.musicVolume = value;
+        GameManager.gameManager.SetSettings(gameSettings);
+        resetSettings.interactable = true;
     }
 
     public void ResetSettings()
     {
         GameManager.gameManager.ResetSettings();
         gameSettings = GameManager.gameManager.gameSettings;
-        qualitySelect.value = gameSettings.quality;
+        qualitySelect.value = (int)gameSettings.quality;
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
+        soundVolume.value = gameSettings.soundVolume;
+        musicVolume.value = gameSettings.musicVolume;
+        resetSettings.interactable = false;
     }
 
     public void SetButton(string buttonName)
@@ -63,6 +89,6 @@ public class SettingsPanel : MonoBehaviour
                 lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
                 break;
         }
-        GameManager.gameManager.SetGameSettings(gameSettings);
+        GameManager.gameManager.SetSettings(gameSettings);
     }
 }

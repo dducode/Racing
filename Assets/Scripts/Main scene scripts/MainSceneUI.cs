@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class MainSceneUI : MonoBehaviour
+public class MainSceneUI : MonoBehaviour, IUserInterface
 {
     [SerializeField] GameObject mainWindow;
     [SerializeField] GameObject selectWindow;
 
-    void Start() => selectWindow.SetActive(false);
+    public void StartUI() => selectWindow.SetActive(false);
 
     void Update() => mainWindow.SetActive(!selectWindow.activeSelf);
 

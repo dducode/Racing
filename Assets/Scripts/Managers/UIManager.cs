@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IManager
 {
     [SerializeField] Canvas mainSceneUI;
     [SerializeField] Canvas playSceneUI;
@@ -16,10 +16,16 @@ public class UIManager : MonoBehaviour
 
     public void StartManager()
     {
-        mainSceneUI.enabled = false;
-        playSceneUI.enabled = false;
-        settingsWindow.enabled = false;
-        loadWindow.enabled = false;
+        List<Canvas> canvases = new List<Canvas>();
+        canvases.Add(mainSceneUI);
+        canvases.Add(playSceneUI);
+        canvases.Add(settingsWindow);
+        canvases.Add(loadWindow);
+        foreach (Canvas canvas in canvases)
+        {
+            canvas.gameObject.GetComponent<IUserInterface>()?.StartUI();
+            canvas.enabled = false;
+        }
     }
 
     public void GetSceneIndex(int index)

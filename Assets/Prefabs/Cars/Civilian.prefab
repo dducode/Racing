@@ -508,9 +508,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4407244999693362}
+  - component: {fileID: 4130713450513104013}
   - component: {fileID: 4797449865932899991}
   - component: {fileID: 4010160624393514017}
   - component: {fileID: 840450355223175427}
+  - component: {fileID: 5456639322022782151}
   m_Layer: 0
   m_Name: Civilian
   m_TagString: Player
@@ -539,6 +541,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4130713450513104013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223002772083156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08a3bde8379db94a84f771fa310bd0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCenter: {x: 0, y: 0.1, z: 0}
+  lights:
+    backLight: {fileID: 6351894011991536346}
+    rearSideLight: {fileID: 622521451884101682}
+    frontLight: {fileID: 7691009570800093392}
+    reverseLight: {fileID: 5406188839190566958}
 --- !u!114 &4797449865932899991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e6e91c877a8524daf0a4e142483997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCenter: {x: 0, y: 0.3, z: 0}
   axleInfos:
   - leftWheel: {fileID: 1638226942607087036}
     rightWheel: {fileID: 2320594204541980597}
@@ -579,12 +598,6 @@ MonoBehaviour:
   automatic:
     minEngineSpeed: 2000
     maxEngineSpeed: 5000
-  thirdPersonCamera: {fileID: 6501991278263307813}
-  lights:
-    backLight: {fileID: 6351894011991536346}
-    rearSideLight: {fileID: 622521451884101682}
-    frontLight: {fileID: 7691009570800093392}
-    reverseLight: {fileID: 5406188839190566958}
 --- !u!54 &4010160624393514017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -750,6 +763,14 @@ LODGroup:
     - renderer: {fileID: 8056011095734605727}
     - renderer: {fileID: 3672614445095234514}
     - renderer: {fileID: 5606812448315165117}
+  m_Enabled: 1
+--- !u!81 &5456639322022782151
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223002772083156}
   m_Enabled: 1
 --- !u!1 &1314131947524996
 GameObject:
@@ -8867,7 +8888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5188917877554613877}
   m_Layer: 0
-  m_Name: BraleLights
+  m_Name: BrakeLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11906,7 +11927,6 @@ GameObject:
   - component: {fileID: 7576368784611844597}
   - component: {fileID: 8561771383716659584}
   - component: {fileID: 6501991278263307813}
-  - component: {fileID: 2527729491544738871}
   - component: {fileID: 8666414519337812125}
   m_Layer: 0
   m_Name: ThirdPersonCamera
@@ -11988,14 +12008,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2527729491544738871
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846280344277357198}
-  m_Enabled: 0
 --- !u!114 &8666414519337812125
 MonoBehaviour:
   m_ObjectHideFlags: 0

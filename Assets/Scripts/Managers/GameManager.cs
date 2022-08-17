@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
-[RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<CarData> carData;
+    [SerializeField] GameSettings defaultSettings;
     public static GameManager gameManager { get; private set; }
     public static UIManager uiManager { get; private set; }
+    public static AudioManager audioManager { get; private set; }
     public GameData gameData { get; private set; }
     public GameSettings gameSettings { get; private set; }
+    public GameSettings DefaultSettings { get { return defaultSettings;} }
     public List<CarData> CarData { get { return carData; } }
     AsyncOperation load;
     Scene scene;
@@ -19,65 +21,65 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        LoadData();
+        LoadSettings();
         gameManager = this;
-        uiManager = GetComponent<UIManager>();
+        uiManager = GetComponentInChildren<UIManager>();
+        audioManager = GetComponentInChildren<AudioManager>();
         uiManager.StartManager();
-        LoadGameData();
-        LoadGameSettings();
+        audioManager.StartManager();
         load = SceneManager.LoadSceneAsync(1);
         load.completed += LoadCompleted;
     }
 
-    void LoadGameData()
+    void OnEnable() => BroadcastMessages<bool>.AddListener(Messages.PAUSE, Pause);
+    void OnDisable() => BroadcastMessages<bool>.RemoveListener(Messages.PAUSE, Pause);
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && scene.buildIndex > 1 && Time.timeScale == 1)
+            BroadcastMessages<bool>.SendMessage(Messages.PAUSE, true);
+    }
+
+    void LoadData()
     {
         GameData _gameData;
         _gameData.carData = carData[0];
         gameData = _gameData;
     }
-    void LoadGameSettings()
+    void LoadSettings()
     {
         GameSettings _gameSettings;
         if (PlayerPrefs.HasKey("Braking"))
         {
-            _gameSettings.quality = PlayerPrefs.GetInt("Quality");
+            _gameSettings.quality = (Quality)PlayerPrefs.GetInt("Quality");
             _gameSettings.lightsTumbler = (KeyCode)PlayerPrefs.GetInt("Lights tumbler");
             _gameSettings.braking = (KeyCode)PlayerPrefs.GetInt("Braking");
+            _gameSettings.soundVolume = PlayerPrefs.GetFloat("Sound volume");
+            _gameSettings.musicVolume = PlayerPrefs.GetFloat("Music volume");
             gameSettings = _gameSettings;
         }
         else
         {
-            _gameSettings.quality = 1;
-            _gameSettings.lightsTumbler = KeyCode.LeftShift;
-            _gameSettings.braking = KeyCode.Space;
-            gameSettings = _gameSettings;
-            PlayerPrefs.SetInt("Quality", gameSettings.quality);
-            PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
-            PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
-            PlayerPrefs.Save();
+            gameSettings = defaultSettings;
+            SaveSettings();
         }
-        QualitySettings.SetQualityLevel(gameSettings.quality);
+        QualitySettings.SetQualityLevel((int)gameSettings.quality);
+    }
+    void SaveSettings()
+    {
+        PlayerPrefs.SetInt("Quality", (int)gameSettings.quality);
+        PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
+        PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
+        PlayerPrefs.SetFloat("Sound volume", gameSettings.soundVolume);
+        PlayerPrefs.SetFloat("Music volume", gameSettings.musicVolume);
+        PlayerPrefs.Save();
     }
     public void ResetSettings()
     {
         PlayerPrefs.DeleteAll();
-        GameSettings _gameSettings;
-        _gameSettings.quality = 1;
-        _gameSettings.lightsTumbler = KeyCode.LeftShift;
-        _gameSettings.braking = KeyCode.Space;
-        gameSettings = _gameSettings;
-        PlayerPrefs.SetInt("Quality", gameSettings.quality);
-        PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
-        PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
-        PlayerPrefs.Save();
-    }
-
-    void OnEnable()
-    {
-        BroadcastMessages<bool>.AddListener(Messages.PAUSE, Pause);
-    }
-    void OnDisable()
-    {
-        BroadcastMessages<bool>.RemoveListener(Messages.PAUSE, Pause);
+        gameSettings = defaultSettings;
+        SaveSettings();
     }
 
     void Pause(bool isPause)
@@ -90,11 +92,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetGameData(GameData _gameData) => gameData = _gameData;
-    public void SetGameSettings(GameSettings _gameSettings)
+    public void SetData(GameData _gameData) => gameData = _gameData;
+    public void SetSettings(GameSettings _gameSettings)
     {
         gameSettings = _gameSettings;
-        QualitySettings.SetQualityLevel(gameSettings.quality);
+        SaveSettings();
+        QualitySettings.SetQualityLevel((int)gameSettings.quality);
     }
 
     public void LoadScene(int scene)
@@ -119,18 +122,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && scene.buildIndex > 1 && Time.timeScale == 1)
-            BroadcastMessages<bool>.SendMessage(Messages.PAUSE, true);
-    }
-
     public void ExitGame()
     {
-        PlayerPrefs.SetInt("Quality", gameSettings.quality);
-        PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
-        PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
-        PlayerPrefs.Save();
+        SaveSettings();
         Application.Quit();
     }
 }

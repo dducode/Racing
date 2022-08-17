@@ -7,6 +7,7 @@ TagManager:
   - road
   - wall
   - finish
+  - track
   layers:
   - Default
   - TransparentFX

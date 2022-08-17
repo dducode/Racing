@@ -4953,7 +4953,6 @@ GameObject:
   - component: {fileID: 8527417379625825137}
   - component: {fileID: 8896697818572669791}
   - component: {fileID: 3700213290951453699}
-  - component: {fileID: 8087430140738337086}
   - component: {fileID: 5852737846104232735}
   m_Layer: 0
   m_Name: ThirdPersonCamera
@@ -5035,14 +5034,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8087430140738337086
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3399109704851224951}
-  m_Enabled: 0
 --- !u!114 &5852737846104232735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8873,9 +8864,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6975820218111698928}
+  - component: {fileID: 532474063193394934}
   - component: {fileID: 9124938623010141705}
   - component: {fileID: 7952027930019813448}
   - component: {fileID: 6750121497431077986}
+  - component: {fileID: 6217283803194389308}
   m_Layer: 0
   m_Name: Mustang
   m_TagString: Player
@@ -8905,6 +8898,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532474063193394934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238697556061181411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08a3bde8379db94a84f771fa310bd0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCenter: {x: 0, y: 0.1, z: 0}
+  lights:
+    backLight: {fileID: 2328447844930384136}
+    rearSideLight: {fileID: 2835166888047069704}
+    frontLight: {fileID: 5764203158141848038}
+    reverseLight: {fileID: 1349617641388444022}
 --- !u!114 &9124938623010141705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8917,7 +8928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e6e91c877a8524daf0a4e142483997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCenter: {x: 0, y: 0.2, z: 0}
   axleInfos:
   - leftWheel: {fileID: 5946666644464181177}
     rightWheel: {fileID: 1315739441377741387}
@@ -8946,12 +8956,6 @@ MonoBehaviour:
   automatic:
     minEngineSpeed: 2200
     maxEngineSpeed: 5500
-  thirdPersonCamera: {fileID: 3700213290951453699}
-  lights:
-    backLight: {fileID: 2328447844930384136}
-    rearSideLight: {fileID: 2835166888047069704}
-    frontLight: {fileID: 5764203158141848038}
-    reverseLight: {fileID: 1349617641388444022}
 --- !u!54 &7952027930019813448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9119,6 +9123,14 @@ LODGroup:
     - renderer: {fileID: 3476603239140873170}
     - renderer: {fileID: 7044317838021704034}
     - renderer: {fileID: 998669855302523885}
+  m_Enabled: 1
+--- !u!81 &6217283803194389308
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238697556061181411}
   m_Enabled: 1
 --- !u!1 &6278457825627785359
 GameObject:

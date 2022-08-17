@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlaySceneUI : MonoBehaviour
+public class PlaySceneUI : MonoBehaviour, IUserInterface
 {
     [SerializeField] GameObject pauseWindow;
     [SerializeField] GameObject fps;
@@ -33,7 +33,7 @@ public class PlaySceneUI : MonoBehaviour
         visualTransmission.text = "1";
     }
 
-    void Start()
+    public void StartUI()
     {
         pauseWindow.SetActive(false);
         fps.SetActive(false);
