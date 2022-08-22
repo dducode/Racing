@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlaySceneUI : MonoBehaviour, IUserInterface
 {
-    [SerializeField] GameObject pauseWindow;
+    [SerializeField] Canvas pauseWindow;
     [SerializeField] GameObject fps;
     [SerializeField] TextMeshProUGUI fpsText;
     [SerializeField] TextMeshProUGUI visualSpeed;
@@ -35,7 +35,10 @@ public class PlaySceneUI : MonoBehaviour, IUserInterface
 
     public void StartUI()
     {
-        pauseWindow.SetActive(false);
+        pauseWindow.enabled = false;
+        CanvasGroup canvasGroup = pauseWindow.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
         fps.SetActive(false);
         rotationTemp = tahometerArrow.rotation.eulerAngles;
     }
@@ -85,11 +88,35 @@ public class PlaySceneUI : MonoBehaviour, IUserInterface
         tahometerArrow.rotation = Quaternion.Slerp(tahometerArrow.rotation, rotation, Time.deltaTime * 5f);
     }
 
-    void Pause(bool isPause) => pauseWindow.SetActive(isPause);
+    void Pause(bool isPause) => StartCoroutine(OpenWindow(isPause, pauseWindow));
+    IEnumerator OpenWindow(bool isOpen, Canvas window)
+    {
+        CanvasGroup canvasGroup = window.GetComponent<CanvasGroup>();
+        if (isOpen)
+        {
+            window.enabled = isOpen;
+            while (canvasGroup.alpha < 1)
+            {
+                canvasGroup.alpha += Time.unscaledDeltaTime * 5f;
+                yield return null;
+            }
+            canvasGroup.interactable = isOpen;
+        }
+        else
+        {
+            canvasGroup.interactable = isOpen;
+            while (canvasGroup.alpha > 0)
+            {
+                canvasGroup.alpha -= Time.unscaledDeltaTime * 5f;
+                yield return null;
+            }
+            window.enabled = isOpen;
+        }
+    }
     public void Continue() => BroadcastMessages<bool>.SendMessage(Messages.PAUSE, false);
     public void MainMenu()
     {
-        pauseWindow.SetActive(false);
+        pauseWindow.enabled = false;
         GameManager.gameManager.LoadScene(1);
     }
     public void Exit() => GameManager.gameManager.ExitGame();

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Settings;
+using UnityEngine.Rendering.Universal;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -15,12 +17,21 @@ public class GameManager : MonoBehaviour
     public GameSettings gameSettings { get; private set; }
     public GameSettings DefaultSettings { get { return defaultSettings;} }
     public List<CarData> CarData { get { return carData; } }
+    int[,] screenResolution;
     AsyncOperation load;
     Scene scene;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        screenResolution = new int[,]
+        {
+            { Screen.currentResolution.width, Screen.currentResolution.height },
+            { 960, 540 },
+            { 1280, 720 },
+            { 1920, 1080 },
+            { 2560, 1440 } 
+        };
         LoadData();
         LoadSettings();
         gameManager = this;
@@ -49,10 +60,11 @@ public class GameManager : MonoBehaviour
     }
     void LoadSettings()
     {
-        GameSettings _gameSettings;
+        GameSettings _gameSettings = new GameSettings();
         if (PlayerPrefs.HasKey("Braking"))
         {
-            _gameSettings.quality = (Quality)PlayerPrefs.GetInt("Quality");
+            _gameSettings.resolution = PlayerPrefs.GetInt("Resolution");
+            _gameSettings.quality = PlayerPrefs.GetInt("Quality");
             _gameSettings.lightsTumbler = (KeyCode)PlayerPrefs.GetInt("Lights tumbler");
             _gameSettings.braking = (KeyCode)PlayerPrefs.GetInt("Braking");
             _gameSettings.soundVolume = PlayerPrefs.GetFloat("Sound volume");
@@ -64,11 +76,16 @@ public class GameManager : MonoBehaviour
             gameSettings = defaultSettings;
             SaveSettings();
         }
-        QualitySettings.SetQualityLevel((int)gameSettings.quality);
+        Screen.SetResolution(
+            screenResolution[gameSettings.resolution, 0],
+            screenResolution[gameSettings.resolution, 1], true
+        );
+        QualitySettings.SetQualityLevel(gameSettings.quality);
     }
     void SaveSettings()
     {
-        PlayerPrefs.SetInt("Quality", (int)gameSettings.quality);
+        PlayerPrefs.SetInt("Resolution", gameSettings.resolution);
+        PlayerPrefs.SetInt("Quality", gameSettings.quality);
         PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
         PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
         PlayerPrefs.SetFloat("Sound volume", gameSettings.soundVolume);
@@ -96,8 +113,8 @@ public class GameManager : MonoBehaviour
     public void SetSettings(GameSettings _gameSettings)
     {
         gameSettings = _gameSettings;
+        QualitySettings.SetQualityLevel(gameSettings.quality);
         SaveSettings();
-        QualitySettings.SetQualityLevel((int)gameSettings.quality);
     }
 
     public void LoadScene(int scene)
@@ -110,14 +127,15 @@ public class GameManager : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         BroadcastMessages<bool>.SendMessage(Messages.PAUSE, false);
-        uiManager.GetSceneIndex(scene.buildIndex);
+        uiManager.CloseLoadWindow(scene.buildIndex);
         load.completed -= LoadCompleted;
     }
     IEnumerator ProgressLoad()
     {
         while (!load.isDone)
         {
-            uiManager.LoadScene(load.progress);
+            float progress = load.progress * 100;
+            uiManager.LoadScene((int)progress, "Loading scene: ");
             yield return null;
         }
     }

@@ -18,7 +18,7 @@ public class TrackGenerate : MonoBehaviour
     int turnRoadsCount = 0;
     int turnRoadsMirrorCount = 0;
 
-    void Awake() => CreateRoads();
+    void Awake() => StartCoroutine(CreateRoads());
 
     void OnEnable() => BroadcastMessages.AddListener(Messages.RELOAD_TRACK, ReloadTrack);
     void OnDisable() => BroadcastMessages.RemoveListener(Messages.RELOAD_TRACK, ReloadTrack);
@@ -34,10 +34,10 @@ public class TrackGenerate : MonoBehaviour
         }
         turnRoadsCount = 0;
         turnRoadsMirrorCount = 0;
-        CreateRoads(); // создаём все чанки заново
+        StartCoroutine(CreateRoads()); // создаём все чанки заново
     }
 
-    public void CreateRoads()
+    public IEnumerator CreateRoads()
     {
         // создаём первый чанк
         GameObject firstRoad = Instantiate(directRoads[UnityEngine.Random.Range(0, directRoads.Count)]);
@@ -45,6 +45,9 @@ public class TrackGenerate : MonoBehaviour
         firstRoad.transform.position = transform.position;
         firstRoad.transform.SetParent(transform);
         roads.Add(firstRoad);
+        float progress = 1f * 100f / (trackLength + 2f);
+        GameManager.uiManager.LoadScene((int)progress, "Generate track: ");
+        yield return null;
         // в цикле создаём оставшиеся чанки, кроме финишного
         for (int i = 0; i < trackLength; i++)
         {
@@ -63,12 +66,19 @@ public class TrackGenerate : MonoBehaviour
 
             road.transform.SetParent(transform);
             roads.Add(road);
+            progress += 100f / (trackLength + 2f);
+            GameManager.uiManager.LoadScene((int)progress, "Generate track: ");
+            yield return null;
         }
         // создаём последний, финишный чанк
         GameObject finishRoad;
         finishRoad = CreateDirectRoad(finish, "finish");
         finishRoad.transform.SetParent(transform);
         roads.Add(finishRoad);
+        progress += 100f / (trackLength + 2f);
+        GameManager.uiManager.LoadScene((int)progress, "Generate track: ");
+        yield return null;
+        GameManager.uiManager.CloseLoadWindow(2);
     }
 
     GameObject CreateDirectRoad(GameObject roadType, string roadName)

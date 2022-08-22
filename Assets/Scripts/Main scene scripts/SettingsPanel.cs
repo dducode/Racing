@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Settings;
 using System;
 
 public class SettingsPanel : MonoBehaviour, IUserInterface
 {
+    [SerializeField] TMP_Dropdown resolutionSelect;
     [SerializeField] TMP_Dropdown qualitySelect;
     [SerializeField] TextMeshProUGUI lightsTumblerButton;
     [SerializeField] TextMeshProUGUI brakingButton;
     [SerializeField] Slider soundVolume;
     [SerializeField] Slider musicVolume;
     [SerializeField] Button resetSettings;
-    GameSettings gameSettings;
     Event e;
 
     public void StartUI()
     {
-        gameSettings = GameManager.gameManager.gameSettings;
-        qualitySelect.value = (int)gameSettings.quality;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
+        resolutionSelect.value = gameSettings.resolution;
+        qualitySelect.value = gameSettings.quality;
+        resolutionSelect.RefreshShownValue();
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
@@ -29,11 +32,21 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
 
     void OnGUI() => e = Event.current;
 
+    public void SetResolution(int count)
+    {
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
+        gameSettings.resolution = count;
+        resolutionSelect.value = gameSettings.resolution;
+        resolutionSelect.RefreshShownValue();
+        GameManager.gameManager.SetSettings(gameSettings);
+        resetSettings.interactable = true;
+    }
+
     public void SetQuality(int count)
     {
-        gameSettings = GameManager.gameManager.gameSettings;
-        gameSettings.quality = (Quality)count;
-        qualitySelect.value = (int)gameSettings.quality;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
+        gameSettings.quality = count;
+        qualitySelect.value = gameSettings.quality;
         qualitySelect.RefreshShownValue();
         GameManager.gameManager.SetSettings(gameSettings);
         resetSettings.interactable = true;
@@ -41,7 +54,7 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
 
     public void SetSoundVolume(float value)
     {
-        gameSettings = GameManager.gameManager.gameSettings;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
         gameSettings.soundVolume = value;
         GameManager.gameManager.SetSettings(gameSettings);
         resetSettings.interactable = true;
@@ -49,7 +62,7 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
 
     public void SetMusicVolume(float value)
     {
-        gameSettings = GameManager.gameManager.gameSettings;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
         gameSettings.musicVolume = value;
         GameManager.gameManager.SetSettings(gameSettings);
         resetSettings.interactable = true;
@@ -58,8 +71,10 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
     public void ResetSettings()
     {
         GameManager.gameManager.ResetSettings();
-        gameSettings = GameManager.gameManager.gameSettings;
-        qualitySelect.value = (int)gameSettings.quality;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
+        resolutionSelect.value = gameSettings.resolution;
+        qualitySelect.value = gameSettings.quality;
+        resolutionSelect.RefreshShownValue();
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
@@ -77,7 +92,7 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
     IEnumerator WaitPlayerInput(string buttonName)
     {
         yield return new WaitWhile(() => e == null || !e.isKey || e.keyCode == KeyCode.None);
-        gameSettings = GameManager.gameManager.gameSettings;
+        GameSettings gameSettings = GameManager.gameManager.gameSettings;
         switch (buttonName)
         {
             case "Braking":

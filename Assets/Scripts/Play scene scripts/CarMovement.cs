@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Settings;
 using UnityEngine.UI;
 using System;
 
@@ -117,7 +118,7 @@ public class CarMovement : MonoBehaviour
         float rotationForce = MotorTorque();
         float motor = carFeature.maxMotorTorque * Input.GetAxis("Vertical") * rotationForce;
         float steering = carFeature.maxSteeringAngle * Input.GetAxis("Horizontal");
-        bool brake = Input.GetKey(gameSettings.braking);    
+        bool brake = Input.GetKey((KeyCode)gameSettings.braking);    
 
         float dot = Vector3.Dot(transform.forward, rb.velocity);
         dot = Mathf.Clamp(dot, 0, Mathf.Infinity);
