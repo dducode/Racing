@@ -22,7 +22,8 @@ public class CarMovement : MonoBehaviour
 
     void Awake()
     {
-        gameSettings = GameManager.gameManager.gameSettings;
+        if (GameManager.gameManager is not null)
+            gameSettings = GameManager.gameManager.gameSettings;
         rb = GetComponent<Rigidbody>();
         currentTransmission = 1;
     }
@@ -106,7 +107,7 @@ public class CarMovement : MonoBehaviour
             Vector3 inverseVelocity = transform.InverseTransformDirection(rb.velocity);
             if (inverseVelocity.z < -0.1f && Input.GetKey(KeyCode.S))
                 currentTransmission = 0;
-            else if (currentTransmission == 0)
+            else if (currentTransmission is 0)
                 currentTransmission = 1;
 
             currentTransmission = Mathf.Clamp(currentTransmission, 0, carFeature.transmission.Count);
@@ -158,7 +159,7 @@ public class CarMovement : MonoBehaviour
 }
 
 [System.Serializable]
-public class AxleInfo
+public struct AxleInfo
 {
     public WheelCollider leftWheel;
     public WheelCollider rightWheel;
@@ -168,7 +169,7 @@ public class AxleInfo
 }
 
 [System.Serializable]
-public class CarFeature
+public struct CarFeature
 {
     [Tooltip("Мощность двигателя")]
     public float maxMotorTorque; // maximum torque the motor can apply to wheel
@@ -184,14 +185,14 @@ public class CarFeature
 }
 
 [System.Serializable]
-public class Automatic
+public struct Automatic
 {
     public float minEngineSpeed;
     public float maxEngineSpeed;
 }
 
 [System.Serializable]
-public class Lights
+public struct Lights
 {
     public GameObject backLight;
     public GameObject rearSideLight;

@@ -27,7 +27,8 @@ public class CarController : MonoBehaviour
             GetComponentInChildren<Camera>().enabled = false;
             return;
         }
-        gameSettings = GameManager.gameManager.gameSettings;
+        if (GameManager.gameManager is not null)
+            gameSettings = GameManager.gameManager.gameSettings;
         rb = GetComponent<Rigidbody>();
     }
 
