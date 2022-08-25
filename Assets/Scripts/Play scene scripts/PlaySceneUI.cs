@@ -13,6 +13,7 @@ public class PlaySceneUI : MonoBehaviour, IUserInterface
     [SerializeField] TextMeshProUGUI visualTransmission;
     [SerializeField] Transform tahometerArrow;
     [SerializeField] float timeFPS = 0.5f;
+    CanvasGroup pauseGroup;
     float currentTimeFPS;
     float meanFPS;
     int frameCount;
@@ -36,9 +37,8 @@ public class PlaySceneUI : MonoBehaviour, IUserInterface
     public void StartUI()
     {
         pauseWindow.enabled = false;
-        CanvasGroup canvasGroup = pauseWindow.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
+        pauseGroup = pauseWindow.GetComponent<CanvasGroup>();
+        pauseGroup.alpha = 0;
         fps.SetActive(false);
         rotationTemp = tahometerArrow.rotation.eulerAngles;
     }
@@ -88,35 +88,18 @@ public class PlaySceneUI : MonoBehaviour, IUserInterface
         tahometerArrow.rotation = Quaternion.Slerp(tahometerArrow.rotation, rotation, Time.deltaTime * 5f);
     }
 
-    void Pause(bool isPause) => StartCoroutine(OpenWindow(isPause, pauseWindow));
-    IEnumerator OpenWindow(bool isOpen, Canvas window)
+    void Pause(bool isPause)
     {
-        CanvasGroup canvasGroup = window.GetComponent<CanvasGroup>();
-        if (isOpen)
-        {
-            window.enabled = isOpen;
-            while (canvasGroup.alpha < 1)
-            {
-                canvasGroup.alpha += Time.unscaledDeltaTime * 5f;
-                yield return null;
-            }
-            canvasGroup.interactable = isOpen;
-        }
-        else
-        {
-            canvasGroup.interactable = isOpen;
-            while (canvasGroup.alpha > 0)
-            {
-                canvasGroup.alpha -= Time.unscaledDeltaTime * 5f;
-                yield return null;
-            }
-            window.enabled = isOpen;
-        }
+        if (GetComponent<Canvas>().enabled)
+            StartCoroutine(GameManager.uiManager.SmoothOperation(isPause, pauseWindow));
     }
+
+    public void OpenSettings() => GameManager.uiManager.OpenSettings(pauseWindow);
     public void Continue() => BroadcastMessages<bool>.SendMessage(Messages.PAUSE, false);
     public void MainMenu()
     {
         pauseWindow.enabled = false;
+        pauseGroup.alpha = 0;
         GameManager.gameManager.LoadScene(1);
     }
     public void Exit() => GameManager.gameManager.ExitGame();

@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour, IManager
     [SerializeField] Slider loadSlider;
     [SerializeField] TextMeshProUGUI loadText;
     int sceneIndex;
+    Canvas otherWindow;
 
     public void StartManager()
     {
@@ -34,7 +35,7 @@ public class UIManager : MonoBehaviour, IManager
     {
         Time.timeScale = 1;
         sceneIndex = index;
-        mainSceneUI.enabled = sceneIndex == 1;
+        mainSceneUI.enabled = sceneIndex is 1;
         playSceneUI.enabled = sceneIndex > 1;
         loadWindow.enabled = false;
     }
@@ -49,37 +50,54 @@ public class UIManager : MonoBehaviour, IManager
         loadText.text = action + progress + " %";
     }
 
-    public void OpenSettins(bool isOpen)
+    public void OpenSettings(Canvas _otherWindow)
     {
-        StartCoroutine(OpenWindow(isOpen, settingsWindow));
-        if (sceneIndex == 1)
-        {
-            mainSceneUI.enabled = !isOpen;
-            Time.timeScale = isOpen ? 0 : 1;
-        }
-        else if (sceneIndex > 1)
-            playSceneUI.enabled = !isOpen;
+        otherWindow = _otherWindow;
+        OpenSettings(true);
     }
-    IEnumerator OpenWindow(bool isOpen, Canvas canvas)
+
+    public void OpenSettings(bool isOpen)
     {
-        CanvasGroup canvasGroup = canvas.GetComponent<CanvasGroup>();
+        if (isOpen)
+            StartCoroutine(SmoothTransition(settingsWindow, otherWindow));
+        else
+            StartCoroutine(SmoothTransition(otherWindow, settingsWindow));
+    }
+
+    public IEnumerator SmoothTransition(Canvas openingWindow, Canvas closingWindow)
+    {
+        CanvasGroup openingGroup = openingWindow.GetComponent<CanvasGroup>();
+        CanvasGroup closingGroup = closingWindow.GetComponent<CanvasGroup>();
+        openingWindow.enabled = true;
+        while (openingGroup?.alpha < 1 || closingGroup?.alpha > 0)
+        {
+            openingGroup.alpha += Time.unscaledDeltaTime * 5f;
+            closingGroup.alpha -= Time.unscaledDeltaTime * 5f;
+            yield return null;
+        }
+        closingWindow.enabled = false;
+    }
+
+    public IEnumerator SmoothOperation(bool isOpen, Canvas targetWindow)
+    {
+        CanvasGroup targetGroup = targetWindow.GetComponent<CanvasGroup>();
         if (isOpen)
         {
-            canvas.enabled = isOpen;
-            while (canvasGroup.alpha < 1)
+            targetWindow.enabled = true;
+            while (targetGroup?.alpha < 1)
             {
-                canvasGroup.alpha += Time.unscaledDeltaTime * 5f;
+                targetGroup.alpha += Time.unscaledDeltaTime * 5f;
                 yield return null;
             }
         }
-        else if (canvasGroup is not null)
+        else
         {
-            while (canvasGroup.alpha > 0)
+            while (targetGroup?.alpha > 0)
             {
-                canvasGroup.alpha -= Time.unscaledDeltaTime * 5f;
+                targetGroup.alpha -= Time.unscaledDeltaTime * 5f;
                 yield return null;
             }
-            canvas.enabled = isOpen;
+            targetWindow.enabled = false;
         }
     }
 }
