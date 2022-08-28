@@ -5,7 +5,6 @@ using Settings;
 using UnityEngine.UI;
 using System;
 
-[RequireComponent(typeof(CarController))]
 public class CarMovement : MonoBehaviour
 {
     [SerializeField] List<AxleInfo> axleInfos; // the information about each individual axle
@@ -17,6 +16,7 @@ public class CarMovement : MonoBehaviour
     public int currentTransmission { get; private set; }
     public float currentEngineSpeed { get; private set; }
     bool isAutomatic = true;
+    IEnumerator routine;
 
     GameSettings gameSettings;
 

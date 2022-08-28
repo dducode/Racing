@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carName: Sport
   _maxMotorTorque: 700
-  _maxBrakingTorque: 1400
+  _maxBrakingTorque: 700
   _mass: 1073
   _transmission: 0
   _car: {fileID: 1094918606176732, guid: 5bb1f14131476c74a95504263bf0558f, type: 3}

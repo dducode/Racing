@@ -26,8 +26,6 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
-        soundVolume.value = gameSettings.soundVolume;
-        musicVolume.value = gameSettings.musicVolume;
     }
 
     void OnGUI() => e = Event.current;
@@ -52,22 +50,6 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
         resetSettings.interactable = true;
     }
 
-    public void SetSoundVolume(float value)
-    {
-        GameSettings gameSettings = GameManager.gameManager.gameSettings;
-        gameSettings.soundVolume = value;
-        GameManager.gameManager.SetSettings(gameSettings);
-        resetSettings.interactable = true;
-    }
-
-    public void SetMusicVolume(float value)
-    {
-        GameSettings gameSettings = GameManager.gameManager.gameSettings;
-        gameSettings.musicVolume = value;
-        GameManager.gameManager.SetSettings(gameSettings);
-        resetSettings.interactable = true;
-    }
-
     public void ResetSettings()
     {
         GameManager.gameManager.ResetSettings();
@@ -78,8 +60,6 @@ public class SettingsPanel : MonoBehaviour, IUserInterface
         qualitySelect.RefreshShownValue();
         brakingButton.text = gameSettings.braking.ToString();
         lightsTumblerButton.text = gameSettings.lightsTumbler.ToString();
-        soundVolume.value = gameSettings.soundVolume;
-        musicVolume.value = gameSettings.musicVolume;
         resetSettings.interactable = false;
     }
 

@@ -44,8 +44,7 @@ public class UIManager : MonoBehaviour, IManager
     {
         Time.timeScale = 0;
         loadWindow.enabled = true;
-        mainSceneUI.enabled = false;
-        playSceneUI.enabled = false;
+        mainSceneUI.enabled = playSceneUI.enabled = false;
         loadSlider.value = progress;
         loadText.text = action + progress + " %";
     }

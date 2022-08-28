@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carName: Mustang
   _maxMotorTorque: 550
-  _maxBrakingTorque: 1100
+  _maxBrakingTorque: 500
   _mass: 1284
   _transmission: 2
   _car: {fileID: 6238697556061181411, guid: ccfae9991e7591241a45533953f96f8c, type: 3}

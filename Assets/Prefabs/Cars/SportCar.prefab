@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4765059221604626}
   - component: {fileID: 33816666783825010}
   - component: {fileID: 23089202093778810}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4278865795854580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4717209442138332}
   - component: {fileID: 33309355283817362}
   - component: {fileID: 23602508307043518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4902200326090230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 3943538080279639879}
   - component: {fileID: 205659240027242542}
   - component: {fileID: 8996248554206220388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08a3bde8379db94a84f771fa310bd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCenter: {x: 0, y: 0.1, z: 0}
+  massCenter: {x: 0, y: 0.4, z: 0}
   lights:
     backLight: {fileID: 1778365168526134}
     rearSideLight: {fileID: 1365312258740234}
@@ -326,8 +326,8 @@ MonoBehaviour:
     braking: 1
   carFeature:
     maxMotorTorque: 700
-    maxSteeringAngle: 60
-    maxBrakingTorque: 1400
+    maxSteeringAngle: 30
+    maxBrakingTorque: 700
     maxEffectiveEngSpeed: 6000
     minEngineSpeed: 1000
     maxEngineSpeed: 7000
@@ -349,12 +349,12 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094918606176732}
   serializedVersion: 2
-  m_Mass: 1269
+  m_Mass: 1073
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!205 &205659240027242542
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 4448066740408568}
   - component: {fileID: 33163511917488036}
   - component: {fileID: 23504703434565340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 4476270035884866}
   - component: {fileID: 33851626560167352}
   - component: {fileID: 23032539178138860}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Paint_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 33614198899603680}
   - component: {fileID: 23797487656713886}
   - component: {fileID: 64284038232190552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Body_Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 4460301418004586}
   - component: {fileID: 33753182913929440}
   - component: {fileID: 23694196845758860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528705317170986}
   - component: {fileID: 6300853109733098195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,13 +826,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183162418364304}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3
+  m_Radius: 0.32
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.1
-  m_ForceAppPointDistance: 0.1
+    targetPosition: 0
+  m_SuspensionDistance: 0.03
+  m_ForceAppPointDistance: 0.32
   m_Mass: 16
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 4833289651912322}
   - component: {fileID: 33557209915144624}
   - component: {fileID: 23968746014619994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Spoiler_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -942,7 +942,7 @@ GameObject:
   - component: {fileID: 4240072006954322}
   - component: {fileID: 33606312217765136}
   - component: {fileID: 23094616988679154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Spoiler_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +992,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1025,7 +1025,7 @@ GameObject:
   - component: {fileID: 4791138930611890}
   - component: {fileID: 33351342390370208}
   - component: {fileID: 23515544642163938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_TurnSignalLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1108,7 +1108,7 @@ GameObject:
   - component: {fileID: 4159135365674190}
   - component: {fileID: 33033870496776468}
   - component: {fileID: 23209094057367034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearLeftGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592728093747950}
   - component: {fileID: 137068345514806764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Suspension_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1279,7 +1279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4256849250626292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 4763383718318084}
   - component: {fileID: 33128949975443354}
   - component: {fileID: 23315676516460282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4051323090461046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_WheelHubFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1437,7 +1437,7 @@ GameObject:
   - component: {fileID: 4427933064318432}
   - component: {fileID: 33917200412021604}
   - component: {fileID: 23923832077909064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4213232195254230}
   - component: {fileID: 7153631073206666147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1550,13 +1550,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288719004185982}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3
+  m_Radius: 0.32
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.1
-  m_ForceAppPointDistance: 0.1
+    targetPosition: 0
+  m_SuspensionDistance: 0.03
+  m_ForceAppPointDistance: 0.32
   m_Mass: 16
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 4354813744207442}
   - component: {fileID: 33894964628258728}
   - component: {fileID: 23754029509431940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Body_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1667,7 +1667,7 @@ GameObject:
   - component: {fileID: 4793021860754908}
   - component: {fileID: 33351900009750544}
   - component: {fileID: 23398363996031340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1750,7 @@ GameObject:
   - component: {fileID: 4813655322587816}
   - component: {fileID: 33681775790968032}
   - component: {fileID: 23250967657797254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1835,7 +1835,7 @@ GameObject:
   - component: {fileID: 4110433973772756}
   - component: {fileID: 33440870322349218}
   - component: {fileID: 23352517515280102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1921,7 +1921,7 @@ GameObject:
   - component: {fileID: 4779323456809204}
   - component: {fileID: 33498418119111322}
   - component: {fileID: 23420828904100316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_MainLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2004,7 +2004,7 @@ GameObject:
   - component: {fileID: 4885017707776402}
   - component: {fileID: 33758193171235530}
   - component: {fileID: 23290931836634726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Spoiler_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,7 +2054,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2087,7 +2087,7 @@ GameObject:
   - component: {fileID: 4779716150377244}
   - component: {fileID: 33582072002175690}
   - component: {fileID: 23538060738048308}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_RearSideLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2168,7 +2168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4976726974819826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2205,7 +2205,7 @@ GameObject:
   - component: {fileID: 4112118879764044}
   - component: {fileID: 33746017884583470}
   - component: {fileID: 23329972007089818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2288,7 +2288,7 @@ GameObject:
   - component: {fileID: 4702777973948880}
   - component: {fileID: 33337210758392174}
   - component: {fileID: 23314999348558434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_DayTimeLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2371,7 +2371,7 @@ GameObject:
   - component: {fileID: 4693130820648752}
   - component: {fileID: 33066983668778612}
   - component: {fileID: 23019493518771794}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2454,7 +2454,7 @@ GameObject:
   - component: {fileID: 4381880496427042}
   - component: {fileID: 33826569670545072}
   - component: {fileID: 23886872952519226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearRightGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2537,7 +2537,7 @@ GameObject:
   - component: {fileID: 4245499836911008}
   - component: {fileID: 33477265847038102}
   - component: {fileID: 23445359792163694}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_FogLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2620,7 +2620,7 @@ GameObject:
   - component: {fileID: 4858354439993626}
   - component: {fileID: 33458028374813130}
   - component: {fileID: 23154478520416466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2703,7 +2703,7 @@ GameObject:
   - component: {fileID: 4912517532783200}
   - component: {fileID: 33036397073132882}
   - component: {fileID: 23371398227637772}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2786,7 @@ GameObject:
   - component: {fileID: 4763543496942948}
   - component: {fileID: 33201854242917538}
   - component: {fileID: 23820696818133010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Windows_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2870,7 +2870,7 @@ GameObject:
   - component: {fileID: 4449528998703204}
   - component: {fileID: 33342904384749778}
   - component: {fileID: 23040785034724546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2956,7 +2956,7 @@ GameObject:
   - component: {fileID: 4316165151204750}
   - component: {fileID: 33517582557539532}
   - component: {fileID: 23852738686233020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_PlateTypeEU_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3039,7 +3039,7 @@ GameObject:
   - component: {fileID: 4489386805349930}
   - component: {fileID: 33079103808495500}
   - component: {fileID: 23261772062777970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3122,7 +3122,7 @@ GameObject:
   - component: {fileID: 4769293138815986}
   - component: {fileID: 33441370400806366}
   - component: {fileID: 23867781325164154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3205,7 +3205,7 @@ GameObject:
   - component: {fileID: 4076565202841702}
   - component: {fileID: 33376756731269182}
   - component: {fileID: 23933815877716664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Windows_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3290,7 +3290,7 @@ GameObject:
   - component: {fileID: 4541735536439674}
   - component: {fileID: 33566562370333964}
   - component: {fileID: 23249710211269748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Paint_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3340,7 +3340,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3371,7 +3371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4443432132136842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_WheelHubRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3402,7 +3402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4837067562645112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_WheelHubFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3435,7 +3435,7 @@ GameObject:
   - component: {fileID: 4804571140506414}
   - component: {fileID: 33952364835328524}
   - component: {fileID: 23560132533353186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_NumberTypeEU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3524,7 +3524,7 @@ GameObject:
   - component: {fileID: 4091239970989560}
   - component: {fileID: 33478636452317288}
   - component: {fileID: 23642187444816460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontLeftGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3607,7 +3607,7 @@ GameObject:
   - component: {fileID: 4020280918984714}
   - component: {fileID: 33188045930655532}
   - component: {fileID: 23305346951118288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3693,7 +3693,7 @@ GameObject:
   - component: {fileID: 4454197388009662}
   - component: {fileID: 33090509580803076}
   - component: {fileID: 23570809490582388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_PlateTypeEU_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3776,7 +3776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4407261603090792}
   - component: {fileID: 137702831249454340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Suspension_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3867,7 +3867,7 @@ GameObject:
   - component: {fileID: 4407689599339018}
   - component: {fileID: 33921631891515634}
   - component: {fileID: 23027780402154528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_PlateTypeEU_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3951,7 +3951,7 @@ GameObject:
   - component: {fileID: 4083271280410218}
   - component: {fileID: 33270241287685288}
   - component: {fileID: 23527597950246282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Paint_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4001,7 +4001,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fd48feac9006d746980eb35788bf14b, type: 2}
+  - {fileID: 2100000, guid: db71dc4277d6210478a81419d2c8f8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4032,7 +4032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4069157593635050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_WheelsHubs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4067,7 +4067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4783930979861612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4126,7 +4126,7 @@ GameObject:
   - component: {fileID: 4716606998906996}
   - component: {fileID: 33283971654563150}
   - component: {fileID: 23897623974770422}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4209,7 +4209,7 @@ GameObject:
   - component: {fileID: 4144113931101296}
   - component: {fileID: 33036584246202960}
   - component: {fileID: 23261898128698740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_TurnSignalRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4291,7 +4291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4637906005512360}
   - component: {fileID: 1163018798816473070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelRearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4322,13 +4322,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785908448937766}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3
+  m_Radius: 0.32
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.1
-  m_ForceAppPointDistance: 0.1
+    targetPosition: 0
+  m_SuspensionDistance: 0.03
+  m_ForceAppPointDistance: 0.32
   m_Mass: 16
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -4355,7 +4355,7 @@ GameObject:
   - component: {fileID: 4426746083000960}
   - component: {fileID: 33248421563030134}
   - component: {fileID: 23015429612345316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearLeft_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4438,7 +4438,7 @@ GameObject:
   - component: {fileID: 4046015950474510}
   - component: {fileID: 33763644118260190}
   - component: {fileID: 23697571034407942}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearRight_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4521,7 +4521,7 @@ GameObject:
   - component: {fileID: 4072863603212990}
   - component: {fileID: 33499435495911288}
   - component: {fileID: 23668211852526932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_ReverseLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4602,7 +4602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4514066470928602}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4636,7 +4636,7 @@ GameObject:
   - component: {fileID: 4520920711820342}
   - component: {fileID: 33137637585538564}
   - component: {fileID: 23701083377294330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontLeft_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4722,7 +4722,7 @@ GameObject:
   - component: {fileID: 4039680293240860}
   - component: {fileID: 33430981255195336}
   - component: {fileID: 23639704668818948}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontRight_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4808,7 +4808,7 @@ GameObject:
   - component: {fileID: 4459583839354200}
   - component: {fileID: 33148474493917506}
   - component: {fileID: 23746802151329612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Windows_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 4643922873059514}
   - component: {fileID: 33891877350138600}
   - component: {fileID: 23478775252932048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4976,7 +4976,7 @@ GameObject:
   - component: {fileID: 4621394190725620}
   - component: {fileID: 33290346000474208}
   - component: {fileID: 23723781586018226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeRearLeft_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5059,7 +5059,7 @@ GameObject:
   - component: {fileID: 4192510877017436}
   - component: {fileID: 33098449121981338}
   - component: {fileID: 23201470735021528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontRight_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5143,7 +5143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463383102714782}
   - component: {fileID: 3436354418588585416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SportCar20_WheelFrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5174,13 +5174,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890649546845854}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.3
+  m_Radius: 0.32
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.1
-  m_ForceAppPointDistance: 0.1
+    targetPosition: 0
+  m_SuspensionDistance: 0.03
+  m_ForceAppPointDistance: 0.32
   m_Mass: 16
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -5207,7 +5207,7 @@ GameObject:
   - component: {fileID: 4632876547709112}
   - component: {fileID: 33267742332627156}
   - component: {fileID: 23171556192239630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontRightGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5288,7 +5288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4207580152465176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_WheelHubRearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5321,7 +5321,7 @@ GameObject:
   - component: {fileID: 4875145163493104}
   - component: {fileID: 33244142987553146}
   - component: {fileID: 23969119238499858}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Body_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5404,7 +5404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4018432049386812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_BrakeFrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5441,7 +5441,7 @@ GameObject:
   - component: {fileID: 4205361936264686}
   - component: {fileID: 33067519975931054}
   - component: {fileID: 23079380483268036}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SportCar20_Body_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5524,7 +5524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8705802222923624866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5558,7 +5558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453810833073064065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5592,7 +5592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8375072895242303148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5629,7 +5629,7 @@ GameObject:
   - component: {fileID: 6356097401854679704}
   - component: {fileID: 6661349032650248205}
   - component: {fileID: 1310760632086522008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThirdPersonCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5690,7 +5690,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -5751,7 +5751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3329612451059961864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraFocus
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -5782,7 +5782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1105317393861742346}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

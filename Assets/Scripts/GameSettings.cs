@@ -9,10 +9,6 @@ namespace Settings
         [SerializeField] KeyCode _braking;
         [SerializeField] Resolution _resolution;
         [SerializeField] Quality _quality;
-        [Range(0, 1)]
-        public float soundVolume;
-        [Range(0, 1)]
-        public float musicVolume;
 
         public KeyCode braking
         {

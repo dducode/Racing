@@ -15,7 +15,6 @@ public class TrackGenerate_Editor : Editor
     public override VisualElement CreateInspectorGUI()
     {
         VisualElement myInspector = new VisualElement();
-        myInspector.Add(new Label("This is my first custom inspector"));
 
         m_inspectorXML.CloneTree(myInspector);
 

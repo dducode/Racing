@@ -34,7 +34,7 @@ public class ThirdPersonCameraMove : MonoBehaviour
         {
             rotY += Mathf.Abs(Input.GetAxis("Mouse X")) > startSensitive ? Input.GetAxis("Mouse X") * sensitivity : 0;
             Quaternion targetRotation = Quaternion.Euler(0, rotY, 0);
-            Quaternion rotation = Quaternion.Slerp(tempRotation, targetRotation, Time.deltaTime * 15f);
+            Quaternion rotation = Quaternion.Slerp(tempRotation, targetRotation, Time.smoothDeltaTime * 15f);
             transform.position = target.position - (rotation * offset);
             transform.LookAt(target);
             tempRotation = rotation;

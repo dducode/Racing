@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameSettings defaultSettings;
     public static GameManager gameManager { get; private set; }
     public static UIManager uiManager { get; private set; }
-    public static AudioManager audioManager { get; private set; }
     public GameData gameData { get; private set; }
     public GameSettings gameSettings { get; private set; }
     public GameSettings DefaultSettings { get { return defaultSettings;} }
@@ -36,11 +35,8 @@ public class GameManager : MonoBehaviour
         LoadSettings();
         gameManager = this;
         uiManager = GetComponentInChildren<UIManager>();
-        audioManager = GetComponentInChildren<AudioManager>();
         uiManager.StartManager();
-        audioManager.StartManager();
-        load = SceneManager.LoadSceneAsync(1);
-        load.completed += LoadCompleted;
+        LoadScene(1);
     }
 
     void OnEnable() => BroadcastMessages<bool>.AddListener(Messages.PAUSE, Pause);
@@ -67,8 +63,6 @@ public class GameManager : MonoBehaviour
             _gameSettings.quality = PlayerPrefs.GetInt("Quality");
             _gameSettings.lightsTumbler = (KeyCode)PlayerPrefs.GetInt("Lights tumbler");
             _gameSettings.braking = (KeyCode)PlayerPrefs.GetInt("Braking");
-            _gameSettings.soundVolume = PlayerPrefs.GetFloat("Sound volume");
-            _gameSettings.musicVolume = PlayerPrefs.GetFloat("Music volume");
             gameSettings = _gameSettings;
         }
         else
@@ -88,8 +82,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Quality", gameSettings.quality);
         PlayerPrefs.SetInt("Lights tumbler", (int)gameSettings.lightsTumbler);
         PlayerPrefs.SetInt("Braking", (int)gameSettings.braking);
-        PlayerPrefs.SetFloat("Sound volume", gameSettings.soundVolume);
-        PlayerPrefs.SetFloat("Music volume", gameSettings.musicVolume);
         PlayerPrefs.Save();
     }
     public void ResetSettings()
@@ -113,6 +105,10 @@ public class GameManager : MonoBehaviour
     public void SetSettings(GameSettings _gameSettings)
     {
         gameSettings = _gameSettings;
+        Screen.SetResolution(
+            screenResolution[gameSettings.resolution, 0],
+            screenResolution[gameSettings.resolution, 1], true
+        );
         QualitySettings.SetQualityLevel(gameSettings.quality);
         SaveSettings();
     }
