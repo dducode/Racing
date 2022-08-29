@@ -52,10 +52,10 @@ public class TrackGenerate : MonoBehaviour
         for (int i = 0; i < trackLength; i++)
         {
             GameObject road;
-            bool rnd = UnityEngine.Random.Range(0, 10) == 0;
-            if(rnd && roads[roads.Count - 1].transform.name == "directroad" && !isStraight)
+            bool rnd = UnityEngine.Random.Range(0, 10) is 0;
+            if(rnd && roads[roads.Count - 1].transform.name is "directroad" && !isStraight)
             {
-                bool mirror = UnityEngine.Random.Range(0, 2) == 0;
+                bool mirror = UnityEngine.Random.Range(0, 2) is 0;
                 road = mirror ? 
                     CreateTurnRoad(mirrorTurnRoad, "turnroad_mirror") :
                     CreateTurnRoad(turnRoad, "turnroad");
@@ -87,11 +87,11 @@ public class TrackGenerate : MonoBehaviour
         GameObject road2 = roads[roads.Count - 1];
         road.name = roadName;
         
-        if(road2.transform.name == "directroad")
+        if(road2.transform.name is "directroad")
             road.transform.rotation = road2.transform.rotation;
         else
         {
-            int degrees = road2.transform.name == "turnroad" ? 90 : -90;
+            int degrees = road2.transform.name is "turnroad" ? 90 : -90;
             Quaternion rotation = Quaternion.Euler(
                 0, roads[roads.Count - 2].transform.eulerAngles.y + degrees, 0
             );
@@ -110,12 +110,12 @@ public class TrackGenerate : MonoBehaviour
 
     GameObject CreateTurnRoad(GameObject roadType, string roadName)
     {
-        int degrees = roadName == "turnroad" ? 0 : 90;
+        int degrees = roadName is "turnroad" ? 0 : 90;
         GameObject turnRoad = Instantiate(roadType);
         GameObject road2 = roads[roads.Count - 1];
 
         turnRoad.name = roadName;
-        if (roadName == "turnroad")
+        if (roadName is "turnroad")
             turnRoadsCount++;
         else
             turnRoadsMirrorCount++;
@@ -141,12 +141,12 @@ public class TrackGenerate : MonoBehaviour
         {
             replacedRoad.transform.position = Vector3.zero;
             Destroy(replacedRoad);
-            if (replacedRoad.name == "turnroad")
+            if (replacedRoad.name is "turnroad")
             {
                 turnRoadsCount--;
                 replacedRoad = CreateTurnRoad(mirrorTurnRoad, "turnroad_mirror");
             }
-            else if (replacedRoad.name == "turnroad_mirror")
+            else if (replacedRoad.name is "turnroad_mirror")
             {
                 turnRoadsMirrorCount--;
                 replacedRoad = CreateTurnRoad(turnRoad, "turnroad");

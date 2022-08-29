@@ -16,14 +16,14 @@ public class TrackGenerateInEditor : MonoBehaviour
     public int trackLength = 100;
     public bool isStraight;
     List<GameObject> roads;
-    List<GameObject> tracks = new List<GameObject>();
+    static List<GameObject> tracks = new List<GameObject>();
     int turnRoadsCount = 0;
     int turnRoadsMirrorCount = 0;
     GameObject newTrack;
 
     public void RemoveTrack()
     {
-        if (tracks.Count == 0)
+        if (tracks.Count is 0)
         {
             Debug.LogWarning("Объекты для удаления отсутствуют");
             return;
@@ -59,10 +59,10 @@ public class TrackGenerateInEditor : MonoBehaviour
         for(int i = 0; i < trackLength; i++)
         {
             GameObject road;
-            bool rnd = UnityEngine.Random.Range(0, 10) == 0;
-            if(rnd && roads[roads.Count - 1].transform.name == "directroad" && !isStraight)
+            bool rnd = UnityEngine.Random.Range(0, 10) is 0;
+            if(rnd && roads[roads.Count - 1].transform.name is "directroad" && !isStraight)
             {
-                bool mirror = UnityEngine.Random.Range(0, 2) == 0;
+                bool mirror = UnityEngine.Random.Range(0, 2) is 0;
                 road = mirror ? 
                     CreateTurnRoad(mirrorTurnRoad, "turnroad_mirror") :
                     CreateTurnRoad(turnRoad, "turnroad");
@@ -86,11 +86,11 @@ public class TrackGenerateInEditor : MonoBehaviour
         GameObject road2 = roads[roads.Count - 1];
         road.name = roadName;
         
-        if(road2.transform.name == "directroad")
+        if(road2.transform.name is "directroad")
             road.transform.rotation = road2.transform.rotation;
         else
         {
-            int degrees = road2.transform.name == "turnroad" ? 90 : -90;
+            int degrees = road2.transform.name is "turnroad" ? 90 : -90;
             Quaternion rotation = Quaternion.Euler(
                 0, roads[roads.Count - 2].transform.eulerAngles.y + degrees, 0
             );
@@ -109,12 +109,12 @@ public class TrackGenerateInEditor : MonoBehaviour
 
     GameObject CreateTurnRoad(GameObject roadType, string roadName)
     {
-        int degrees = roadName == "turnroad" ? 0 : 90;
+        int degrees = roadName is "turnroad" ? 0 : 90;
         GameObject turnRoad = Instantiate(roadType);
         GameObject road2 = roads[roads.Count - 1];
 
         turnRoad.name = roadName;
-        if (roadName == "turnroad")
+        if (roadName is "turnroad")
             turnRoadsCount++;
         else
             turnRoadsMirrorCount++;
@@ -140,12 +140,12 @@ public class TrackGenerateInEditor : MonoBehaviour
         if (Mathf.Abs(turnRoadsCount - turnRoadsMirrorCount) > 1)
         {
             roadToReplace.transform.position = Vector3.zero;
-            if (roadToReplace.name == "turnroad")
+            if (roadToReplace.name is "turnroad")
             {
                 turnRoadsCount--;
                 replacedRoad = CreateTurnRoad(mirrorTurnRoad, "turnroad_mirror");
             }
-            else if (roadToReplace.name == "turnroad_mirror")
+            else if (roadToReplace.name is "turnroad_mirror")
             {
                 turnRoadsMirrorCount--;
                 replacedRoad = CreateTurnRoad(turnRoad, "turnroad");
