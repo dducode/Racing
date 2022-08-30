@@ -52,7 +52,7 @@
 
 <img src="For_github/2022-08-29-18-49-40.gif" width=720>
 
-Окно [генерации](Assets/Scripts/Editor/GenerateTrackWindow.cs) находится в Window > Generate track
+[Окно генерации](Assets/Scripts/Editor/GenerateTrackWindow.cs) находится в Window > Generate track
 
 <img src="For_github/Screenshot_2.png" width=540>
 

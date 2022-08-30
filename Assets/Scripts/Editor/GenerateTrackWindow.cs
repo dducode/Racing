@@ -74,8 +74,7 @@ public class GenerateTrackWindow : EditorWindow
     public void CreateTrack()
     {
         roads = new List<GameObject>();
-        newTrack = new GameObject();
-        newTrack.name = "Track";
+        newTrack = new GameObject("Track");
         if (tracks.Count > 0)
         {
             Vector3 position = tracks[tracks.Count - 1].transform.position;
