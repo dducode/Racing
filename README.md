@@ -52,8 +52,9 @@
 
 <img src="For_github/2022-08-29-18-49-40.gif" width=720>
 
-* [Реализация скрипта](Assets/Scripts/TrackGenerateInEditor.cs) 
-* [Inspector скрипта](Assets/Scripts/Editor/TrackGenerate_Editor.cs) 
+Окно [генерации](Assets/Scripts/Editor/GenerateTrackWindow.cs) находится в Window > Generate track
+
+<img src="For_github/Screenshot_2.png" width=540>
 
 # Использованные ассеты
 * Автомобили - [раз](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-sports-car-20-144253), [два](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-civilian-vehicle-5-124987), [три](https://assetstore.unity.com/packages/3d/vehicles/land/realistic-mobile-car-demo-173467).

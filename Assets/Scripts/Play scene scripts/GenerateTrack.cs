@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class TrackGenerate : MonoBehaviour
+public class GenerateTrack : MonoBehaviour
 {
     public List<GameObject> directRoads;
     public GameObject turnRoad;

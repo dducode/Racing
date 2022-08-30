@@ -1,25 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
-using System;
 
-[ExecuteInEditMode]
-public class TrackGenerateInEditor : MonoBehaviour
+public class GenerateTrackWindow : EditorWindow
 {
-    public GameObject directRoad;
-    public GameObject turnRoad;
-    public GameObject mirrorTurnRoad;
-    public GameObject finish;
-    public string beginPointName = "begin";
-    public string endPointName = "end";
+    static GameObject directRoad;
+    static GameObject turnRoad;
+    static GameObject mirrorTurnRoad;
+    static GameObject finish;
+    string beginPointName = "begin";
+    string endPointName = "end";
     [Range(100, 1000)]
-    public int trackLength = 100;
-    public bool isStraight;
+    int trackLength = 100;
+    bool isStraight;
     List<GameObject> roads;
     static List<GameObject> tracks = new List<GameObject>();
     int turnRoadsCount = 0;
     int turnRoadsMirrorCount = 0;
     GameObject newTrack;
+
+    [MenuItem("Window/Generate Track")]
+    public static void Init()
+    {
+        var window = EditorWindow.GetWindow<GenerateTrackWindow>("Generate Track");
+        DontDestroyOnLoad(window);
+    }
+
+    void OnGUI()
+    {
+        using (var verticalArea = 
+            new EditorGUILayout.VerticalScope())
+        {
+            directRoad = EditorGUILayout.ObjectField(
+                "Direct road", directRoad, typeof(GameObject), false) as GameObject;
+            turnRoad = EditorGUILayout.ObjectField(
+                "Turn road", turnRoad, typeof(GameObject), false) as GameObject;
+            mirrorTurnRoad = EditorGUILayout.ObjectField(
+                "Mirror turn road", mirrorTurnRoad, typeof(GameObject), false) as GameObject;
+            finish = EditorGUILayout.ObjectField(
+                "Finish", finish, typeof(GameObject), false) as GameObject;
+            beginPointName = EditorGUILayout.TextField("Begin point name", beginPointName);
+            endPointName = EditorGUILayout.TextField("End point name", endPointName);
+            isStraight = EditorGUILayout.Toggle("Is straight", isStraight);
+            var isGenerate = GUILayout.Button("Generate");
+            if (isGenerate)
+                CreateTrack();
+            var isRemove = GUILayout.Button("Remove all tracks");
+            if (isRemove)
+                RemoveTrack();
+        }
+    }
 
     public void RemoveTrack()
     {
@@ -165,5 +197,4 @@ public class TrackGenerateInEditor : MonoBehaviour
         
         return i;
     }
-    
 }
