@@ -20,6 +20,7 @@ public class GenerateTrackWindow : EditorWindow
     int turnRoadsCount = 0;
     int turnRoadsMirrorCount = 0;
     GameObject newTrack;
+    bool generateCheck;
 
     [MenuItem("Window/Generate Track")]
     public static void Init()
@@ -50,6 +51,8 @@ public class GenerateTrackWindow : EditorWindow
             var isRemove = GUILayout.Button("Remove all tracks");
             if (isRemove)
                 RemoveTrack();
+            if ((directRoad is null || turnRoad is null || mirrorTurnRoad is null || finish is null) && generateCheck)
+                EditorGUILayout.HelpBox("Some objects for generation were not selected", MessageType.Warning);
         }
     }
 
@@ -57,7 +60,7 @@ public class GenerateTrackWindow : EditorWindow
     {
         if (tracks.Count is 0)
         {
-            Debug.LogWarning("Объекты для удаления отсутствуют");
+            Debug.LogWarning("There are no objects to delete");
             return;
         }
         roads.Clear();
@@ -73,6 +76,11 @@ public class GenerateTrackWindow : EditorWindow
 
     public void CreateTrack()
     {
+        if (directRoad is null || turnRoad is null || mirrorTurnRoad is null || finish is null)
+        {
+            generateCheck = true;
+            return;
+        }
         roads = new List<GameObject>();
         newTrack = new GameObject("Track");
         if (tracks.Count > 0)
