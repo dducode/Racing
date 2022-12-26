@@ -3,7 +3,7 @@
 
 ![RacingImg](Assets/Textures/Icons/icon.png)
 
-[Racing Demo (installer on windows)](https://drive.google.com/drive/folders/11N0Sd8-jbeBE95ZjCSP_VtCqtva2yTuR?usp=sharing)
+[Racing Demo (installer on windows)](https://github.com/DIDenis/Racing/releases/download/v1.0.0/racing_setup.exe)
 
 </h1>
 
